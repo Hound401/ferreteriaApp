@@ -2,15 +2,9 @@ package com.ferreteria.app.service;
 
 import java.util.List;
 
+import com.ferreteria.app.entity.AsignarTurnoVendedores;
 import com.ferreteria.app.entity.PerfilSistema;
 
-public interface PerfilSistemaService {
+public interface PerfilSistemaService extends ICRUD<PerfilSistema>{
 
-	List<PerfilSistema> findAll();
-	
-	PerfilSistema findById(Integer idPerfilSistema);
-	
-	PerfilSistema save(PerfilSistema perfilSistema);
-	
-	PerfilSistema update(PerfilSistema perfilSistema);
 }

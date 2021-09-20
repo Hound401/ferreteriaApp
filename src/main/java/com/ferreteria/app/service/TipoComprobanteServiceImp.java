@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.TipoComprobante;
 import com.ferreteria.app.repository.TipoComprobanteRepository;
 
@@ -39,4 +40,14 @@ public class TipoComprobanteServiceImp implements TipoComprobanteService {
 		
 		return tipoComprobanteRepository.save(tipoComprobante);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idTipoComprobante) throws Exception {
+        Optional<TipoComprobante> optionalTC = tipoComprobanteRepository.findById(idTipoComprobante);
+        if(!optionalTC.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idTipoComprobante);
+        }
+        tipoComprobanteRepository.deleteById(idTipoComprobante);
+        return true;
+    }	
 }

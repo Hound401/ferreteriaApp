@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.Factura;
 import com.ferreteria.app.repository.FacturaRepository;
 
@@ -22,9 +23,9 @@ public class FacturaServiceImp implements FacturaService {
 	}
 
 	@Override
-	public Factura findById(Integer ifFactura) {
+	public Factura findById(Integer idFactura) {
 		
-		Optional<Factura> facturaO = facturaRepository.findById(ifFactura);
+		Optional<Factura> facturaO = facturaRepository.findById(idFactura);
 		return facturaO.isPresent() ? facturaO.get() : new Factura();
 	}
 
@@ -39,5 +40,15 @@ public class FacturaServiceImp implements FacturaService {
 		
 		return facturaRepository.save(factura);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idFactura) throws Exception {
+        Optional<Factura> optionalFactura = facturaRepository.findById(idFactura);
+        if(!optionalFactura.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idFactura);
+        }
+        facturaRepository.deleteById(idFactura);
+        return true;
+    }
 
 }

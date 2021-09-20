@@ -3,6 +3,7 @@ package com.ferreteria.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class RecibosController {
 	}
 	
 	@GetMapping("/{idRecibo}")
-	public Recibos findById(@PathVariable("idRecibo") Integer idRecibo){
+	public Recibos findById(@PathVariable("idRecibo") Integer idRecibo) throws Exception{
 		return recibosService.findById(idRecibo);
 	}
 
@@ -43,4 +44,10 @@ public class RecibosController {
 		return recibosService.update(recibos);
 		
 	}
+	
+	@DeleteMapping("/{idRecibo}")
+    public String deleteById(@PathVariable("idRecibo") Integer idRecibo) throws Exception {
+		recibosService.deleteById(idRecibo);
+        return "Item eliminado correctamente";
+    }
 }

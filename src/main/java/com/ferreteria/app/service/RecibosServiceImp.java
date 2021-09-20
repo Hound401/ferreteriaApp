@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.Recibos;
 import com.ferreteria.app.repository.RecibosRepository;
 
@@ -39,4 +40,14 @@ public class RecibosServiceImp implements RecibosService{
 		
 		return recibosRepository.save(recibos);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idRecibo) throws Exception {
+        Optional<Recibos> optionalCJ = recibosRepository.findById(idRecibo);
+        if(!optionalCJ.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idRecibo);
+        }
+        recibosRepository.deleteById(idRecibo);
+        return true;
+    }
 }

@@ -2,15 +2,9 @@ package com.ferreteria.app.service;
 
 import java.util.List;
 
+import com.ferreteria.app.entity.AsignarTurnoVendedores;
 import com.ferreteria.app.entity.DetalleVenta;
 
-public interface DetalleVentaService {
+public interface DetalleVentaService extends ICRUD<DetalleVenta> {
 
-	List<DetalleVenta> findAll();
-	
-	DetalleVenta findById(Integer idDetalleVenta);
-	
-	DetalleVenta save(DetalleVenta detalleVenta);
-	
-	DetalleVenta update(DetalleVenta detalleVenta);
 }

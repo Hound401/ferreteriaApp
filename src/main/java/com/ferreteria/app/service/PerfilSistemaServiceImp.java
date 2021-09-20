@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.PerfilSistema;
 import com.ferreteria.app.repository.PerfilSistemaRepository;
 
@@ -39,5 +40,15 @@ public class PerfilSistemaServiceImp implements PerfilSistemaService {
 		
 		return perfilSistemaRepository.save(perfilSistema);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idPerfilSistema) throws Exception {
+        Optional<PerfilSistema> optionalPS = perfilSistemaRepository.findById(idPerfilSistema);
+        if(!optionalPS.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idPerfilSistema);
+        }
+        perfilSistemaRepository.deleteById(idPerfilSistema);
+        return true;
+    }
 
 }

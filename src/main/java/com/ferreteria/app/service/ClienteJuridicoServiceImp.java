@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ferreteria.app.entity.ClienteJuridico;
+import com.ferreteria.app.entity.Empleados;
 import com.ferreteria.app.repository.ClienteJuridicoRepository;
 
 @Service
@@ -39,4 +40,14 @@ public class ClienteJuridicoServiceImp implements ClienteJuridicoService {
 		
 		return clienteJuridicoRepository.save(clienteJuridico);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idClienteJuridico) throws Exception {
+        Optional<ClienteJuridico> optionalCJ = clienteJuridicoRepository.findById(idClienteJuridico);
+        if(!optionalCJ.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idClienteJuridico);
+        }
+        clienteJuridicoRepository.deleteById(idClienteJuridico);
+        return true;
+    }	
 }

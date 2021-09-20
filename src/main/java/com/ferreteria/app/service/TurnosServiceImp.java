@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.Turnos;
 import com.ferreteria.app.repository.TurnosRepository;
 
@@ -39,4 +40,14 @@ public class TurnosServiceImp implements TurnosService {
 		
 		return turnosRepository.save(turnos);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idTurno) throws Exception {
+        Optional<Turnos> optionalTurno = turnosRepository.findById(idTurno);
+        if(!optionalTurno.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idTurno);
+        }
+        turnosRepository.deleteById(idTurno);
+        return true;
+    }	
 }

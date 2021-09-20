@@ -2,15 +2,9 @@ package com.ferreteria.app.service;
 
 import java.util.List;
 
+import com.ferreteria.app.entity.AsignarTurnoVendedores;
 import com.ferreteria.app.entity.Productos;
 
-public interface ProductosService {
+public interface ProductosService extends ICRUD<Productos> {
 
-	List<Productos> findAll();
-	
-	Productos findById(Integer idProducto);
-	
-	Productos save(Productos productos);
-	
-	Productos update(Productos productos);
 }

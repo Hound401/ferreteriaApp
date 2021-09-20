@@ -3,6 +3,7 @@ package com.ferreteria.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class DetalleVentaController {
 	}
 	
 	@GetMapping("/{idDetalleVenta}")
-	public DetalleVenta findById(@PathVariable("idDetalleVenta") Integer idDetalleVenta){
+	public DetalleVenta findById(@PathVariable("idDetalleVenta") Integer idDetalleVenta) throws Exception{
 		return detalleVentaService.findById(idDetalleVenta);
 	}
 
@@ -44,4 +45,10 @@ public class DetalleVentaController {
 		return detalleVentaService.update(detalleVenta);
 		
 	}
+	
+	@DeleteMapping("/{idDetalleVenta}")
+    public String deleteById(@PathVariable("idDetalleVenta") Integer idDetalleVenta) throws Exception {
+		detalleVentaService.deleteById(idDetalleVenta);
+        return "Item eliminado correctamente";
+    }
 }

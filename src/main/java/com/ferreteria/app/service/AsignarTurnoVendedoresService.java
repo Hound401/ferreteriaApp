@@ -3,14 +3,8 @@ package com.ferreteria.app.service;
 import java.util.List;
 
 import com.ferreteria.app.entity.AsignarTurnoVendedores;
+import com.ferreteria.app.entity.Empleados;
 
-public interface AsignarTurnoVendedoresService {
+public interface AsignarTurnoVendedoresService extends ICRUD<AsignarTurnoVendedores>{
 
-	List<AsignarTurnoVendedores> findAll();
-	
-	AsignarTurnoVendedores findById(Integer idAsignarTurnoVendedores);
-	
-	AsignarTurnoVendedores save(AsignarTurnoVendedores asignarTurnoVendedores);
-	
-	AsignarTurnoVendedores update(AsignarTurnoVendedores asignarTurnoVendedores);
 }

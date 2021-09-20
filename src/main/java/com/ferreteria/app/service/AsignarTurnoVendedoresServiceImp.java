@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ferreteria.app.entity.AsignarTurnoVendedores;
+import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.repository.AsignarTurnoVendedoresRepository;
 
 @Service
@@ -39,4 +40,14 @@ public class AsignarTurnoVendedoresServiceImp implements AsignarTurnoVendedoresS
 		
 		return asignarTurnoVendedoresRepository.save(asignarTurnoVendedores);
 	}
+	
+	@Override
+	public boolean deleteById(Integer idAsignarTurnoVendedores) throws Exception {
+        Optional<AsignarTurnoVendedores> optionalATV = asignarTurnoVendedoresRepository.findById(idAsignarTurnoVendedores);
+        if(!optionalATV.isPresent()){
+            throw new Exception("ID NO ENCONTRADO: " + idAsignarTurnoVendedores);
+        }
+        asignarTurnoVendedoresRepository.deleteById(idAsignarTurnoVendedores);
+        return true;
+    }	
 }
