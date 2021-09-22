@@ -1,8 +1,10 @@
 package com.ferreteria.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ferreteria.app.DTO.VentasDTO;
 import com.ferreteria.app.entity.Ventas;
 import com.ferreteria.app.service.VentasService;
 
@@ -64,4 +67,28 @@ public class VentasController {
 		ventasService.deleteById(idVenta);
         return "Item eliminado correctamente";
     }
+	
+	@GetMapping(value = "/dto", produces = MediaType.APPLICATION_JSON_VALUE)
+	private List<VentasDTO> getConsultasDTO() throws Exception {
+		List<Ventas> ventas = new ArrayList<>();
+		List<VentasDTO> ventasDTO = new ArrayList<>();
+		ventas = ventasService.findAll();
+		for (Ventas v : ventas) {
+			VentasDTO d = new VentasDTO();
+			d.setIdVenta(v.getIdVenta());
+			d.setEmpleados(v.getEmpleados());
+			d.setClientes(v.getClientes());
+
+			// localhost:0880/Empleados/
+			ControllerLinkBuilder linkTo1 = linkTo(methodOn(EmpleadosController.class).findById((v.getEmpleados().getIdEmpleado())));
+			d.add(linkTo1.withSelfRel());
+			VentasDTO.add(d);
+
+			// localhost:0880/Clientes/
+			ControllerLinkBuilder linkTo2 = linkTo(methodOn(ClientesController.class).listarPorId((v.getClientes().getIdCliente())));
+			d.add(linkTo2.withSelfRel());
+			VentasDTO.add(d);
+		};
+		return ventasDTO;
+	}
 }

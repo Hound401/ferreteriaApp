@@ -1,19 +1,21 @@
 package com.ferreteria.app.DTO;
 
-import com.ferreteria.app.entity.Empleados;
-import com.ferreteria.app.entity.Ventas;
+import java.io.Serializable;
 
-public class VentasDTO {
+import com.ferreteria.app.entity.Clientes;
+import com.ferreteria.app.entity.Empleados;
+
+public class VentasDTO extends ResourceSupport implements Serializable {
 
 	private Integer idVenta;
 	private Empleados empleados;
-	private Ventas ventas;
+	private Clientes clientes;
 	
 	public Integer getIdVenta() {
 		return idVenta;
 	}
-	public void setIdVentas(Integer idVentas) {
-		this.idVenta = idVentas;
+	public void setIdVenta(Integer idVenta) {
+		this.idVenta = idVenta;
 	}
 	public Empleados getEmpleados() {
 		return empleados;
@@ -21,12 +23,16 @@ public class VentasDTO {
 	public void setEmpleados(Empleados empleados) {
 		this.empleados = empleados;
 	}
-	public Ventas getVentas() {
-		return ventas;
+	public Clientes getClientes() {
+		return clientes;
 	}
-	public void setVentas(Ventas ventas) {
-		this.ventas = ventas;
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
 	}
+	
+	
+	
+	
 	
 	
 	
