@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.ClienteNatural;
 import com.ferreteria.app.service.ClienteNaturalService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/ClienteNatural")
 public class ClienteNaturalController {
@@ -23,6 +27,15 @@ public class ClienteNaturalController {
 	@Autowired
 	private ClienteNaturalService clienteNaturalService;
 	
+	@ApiOperation(value = "Obtener todos los ClienteNatural",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "ClienteNatural")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron ClienteNatural en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	@GetMapping
 	public List<ClienteNatural> findAll(){
 		return clienteNaturalService.findAll();

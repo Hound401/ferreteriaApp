@@ -16,12 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.Recibos;
 import com.ferreteria.app.service.RecibosService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/Recibos")
 public class RecibosController {
 
 	@Autowired
 	private RecibosService recibosService;
+	
+	@ApiOperation(value = "Obtener todos los Recibos",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "Recibos")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron Recibos en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	
 	@GetMapping
 	public List<Recibos> findAll(){

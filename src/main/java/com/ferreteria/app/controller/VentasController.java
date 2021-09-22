@@ -16,12 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.Ventas;
 import com.ferreteria.app.service.VentasService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/Ventas")
 public class VentasController {
 
 	@Autowired
 	private VentasService ventasService;
+	
+	@ApiOperation(value = "Obtener todas las Ventas",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "Ventas")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron Ventas en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	
 	@GetMapping
 	public List<Ventas> findAll(){

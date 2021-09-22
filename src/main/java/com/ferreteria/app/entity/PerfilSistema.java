@@ -17,5 +17,23 @@ public class PerfilSistema {
 	private Integer idPerfilSistema;
 	
 	@Column(name = "NombrePerfil")
-	private Integer NombrePerfil;
+	private String NombrePerfil;
+
+	public Integer getIdPerfilSistema() {
+		return idPerfilSistema;
+	}
+
+	public void setIdPerfilSistema(Integer idPerfilSistema) {
+		this.idPerfilSistema = idPerfilSistema;
+	}
+
+	public String getNombrePerfil() {
+		return NombrePerfil;
+	}
+
+	public void setNombrePerfil(String nombrePerfil) {
+		NombrePerfil = nombrePerfil;
+	}
+	
+	
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
@@ -39,14 +38,14 @@ public class EmpleadosController {
         this.empleadosService = empleadosService;
     }
 
-	@ApiOperation(value = "Obtener todos los empleados",
+	@ApiOperation(value = "Obtener todos los Empleados",
             notes = "No necesita parametros de entrada",
             response = List.class,
             responseContainer = "Empleados")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
             @ApiResponse(code = 404, message = "Not found, no encontrado"),
-            @ApiResponse(code = 405, message = "No se encontraron pacientes en la BD"),
+            @ApiResponse(code = 405, message = "No se encontraron empleados en la BD"),
             @ApiResponse(code = 200, message = "Peticón OK")})
 	
 	@GetMapping

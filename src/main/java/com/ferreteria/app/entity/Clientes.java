@@ -8,10 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
 @Entity
+@ApiModel(description = "Información o propiedes del Cliente")
 @Table(name = "Clientes")
 public class Clientes {
 	
@@ -23,8 +28,10 @@ public class Clientes {
 	@Column(name = "Direccion", length = 100)
 	private String Direccion;
 	
-	@Column(name = "Telefono", length = 100)
-	@Size ( max = 100, message = "El Nombre debe tener un maximo de 100 caracteres")
+	@Column(name = "Telefono", length = 16)
+	@Size ( max = 100, message = "El Telefono debe tener un maximo de 16 caracteres")
+	@ApiModelProperty(value = "Telefono debe tener como minimo 16 caracteres")
+	@NotBlank(message = "Telefono es requerido")
 	private String Telefono;
 	
 	@Column(name = "Email", length = 100)

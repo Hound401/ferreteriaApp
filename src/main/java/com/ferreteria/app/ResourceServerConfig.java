@@ -49,11 +49,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/ventas/**").permitAll()
                 .antMatchers("/empleados/**").permitAll()
                 .antMatchers("/clientes/**").permitAll()
-                .antMatchers("/medicos/**").permitAll()
+                .antMatchers("/Turnos/**").permitAll()
+                .antMatchers("/PerfilSistema/**").permitAll()
                 .antMatchers("/menus/**").permitAll()
                 .antMatchers("/tokens/**").permitAll()
-                .antMatchers("/consultaexamenes/**").permitAll()
-                .antMatchers("/pacientes/**").permitAll()
                 .antMatchers("/usuarios/").permitAll()
                 .antMatchers("/usuarios/getAll/**").hasRole("USER");
     }

@@ -11,8 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
 
 @Entity
+@ApiModel(description = "Información o propiedes de la Factura")
 @Table(name = "Factura")
 public class Factura {
 
@@ -33,5 +36,47 @@ public class Factura {
 	@ManyToOne
 	@JoinColumn(name = "idTipoComprobante", nullable = false)
 	private TipoComprobante tipoComprobante;
+
+	public Integer getIdFactura() {
+		return idFactura;
+	}
+
+	public void setIdFactura(Integer idFactura) {
+		this.idFactura = idFactura;
+	}
+
+	public BigDecimal getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public BigDecimal getTotal() {
+		return Total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		Total = total;
+	}
+
+	public BigDecimal getIVA() {
+		return IVA;
+	}
+
+	public void setIVA(BigDecimal iVA) {
+		IVA = iVA;
+	}
+
+	public TipoComprobante getTipoComprobante() {
+		return tipoComprobante;
+	}
+
+	public void setTipoComprobante(TipoComprobante tipoComprobante) {
+		this.tipoComprobante = tipoComprobante;
+	}
+	
+	
 	
 }

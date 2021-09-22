@@ -16,12 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.AsignarTurnoVendedores;
 import com.ferreteria.app.service.AsignarTurnoVendedoresService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/AsignarTurnoVendedores")
 public class AsignarTurnoVendedoresController {
 
 	@Autowired
 	private AsignarTurnoVendedoresService asignarTurnoVendedoresService;
+	
+	@ApiOperation(value = "Obtener todos los AsignarTurnoVendedores",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "AsignarTurnoVendedores")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron AsignarTurnoVendedores en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	
 	@GetMapping
 	public List<AsignarTurnoVendedores> findAll(){

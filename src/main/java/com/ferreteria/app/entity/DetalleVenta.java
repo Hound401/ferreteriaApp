@@ -9,7 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
+@ApiModel(description = "Información o propiedes del Detalle de la Venta")
 @Table(name = "DetalleVenta")
 public class DetalleVenta {
 
@@ -32,4 +35,46 @@ public class DetalleVenta {
 	@ManyToOne
 	@JoinColumn(name = "idVenta", nullable = false)
 	private Ventas ventas;
+
+	public Integer getIdDetalleVenta() {
+		return idDetalleVenta;
+	}
+
+	public void setIdDetalleVenta(Integer idDetalleVenta) {
+		this.idDetalleVenta = idDetalleVenta;
+	}
+
+	public Integer getUnidades() {
+		return Unidades;
+	}
+
+	public void setUnidades(Integer unidades) {
+		Unidades = unidades;
+	}
+
+	public String getImporte() {
+		return Importe;
+	}
+
+	public void setImporte(String importe) {
+		Importe = importe;
+	}
+
+	public TipoProducto getTipoProducto() {
+		return tipoProducto;
+	}
+
+	public void setTipoProducto(TipoProducto tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
+
+	public Ventas getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Ventas ventas) {
+		this.ventas = ventas;
+	}
+	
+	
 }

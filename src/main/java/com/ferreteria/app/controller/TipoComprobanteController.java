@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.TipoComprobante;
 import com.ferreteria.app.service.TipoComprobanteService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/TipoComprobante")
 public class TipoComprobanteController {
@@ -23,6 +27,16 @@ public class TipoComprobanteController {
 	@Autowired
 	private TipoComprobanteService tipoComprobanteService;
 	
+	
+	@ApiOperation(value = "Obtener todos los TipoComprobante",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "TipoComprobante")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron TipoComprobante en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	@GetMapping
 	public List<TipoComprobante> findAll(){
 		return tipoComprobanteService.findAll();

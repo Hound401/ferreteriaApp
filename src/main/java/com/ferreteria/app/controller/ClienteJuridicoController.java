@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.service.ClienteJuridicoService;
 
-
-
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/ClienteJuridico")
@@ -26,6 +27,15 @@ public class ClienteJuridicoController {
 	@Autowired
 	private ClienteJuridicoService clienteJuridicoService;
 	
+	@ApiOperation(value = "Obtener todos los Clientes Juridicos",
+            notes = "No necesita parametros de entrada",
+            response = List.class,
+            responseContainer = "ClienteJuridico")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request o datos no enviados correctamente"),
+            @ApiResponse(code = 404, message = "Not found, no encontrado"),
+            @ApiResponse(code = 405, message = "No se encontraron ClienteJuridico en la BD"),
+            @ApiResponse(code = 200, message = "Peticón OK")})
 	@GetMapping
 	public List<ClienteJuridico> findAll(){
 		return clienteJuridicoService.findAll();

@@ -28,5 +28,39 @@ public class CuentaUsuarios {
 	@ManyToOne
 	@JoinColumn(name = "idPerfilSistema", nullable = false)
 	private PerfilSistema perfilSistema;
+
+	public Integer getIdCuentaUsuario() {
+		return idCuentaUsuario;
+	}
+
+	public void setIdCuentaUsuario(Integer idCuentaUsuario) {
+		this.idCuentaUsuario = idCuentaUsuario;
+	}
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+	public Empleados getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(Empleados empleados) {
+		this.empleados = empleados;
+	}
+
+	public PerfilSistema getPerfilSistema() {
+		return perfilSistema;
+	}
+
+	public void setPerfilSistema(PerfilSistema perfilSistema) {
+		this.perfilSistema = perfilSistema;
+	}
+	
+	
 }
 

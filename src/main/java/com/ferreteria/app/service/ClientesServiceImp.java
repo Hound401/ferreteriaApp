@@ -18,7 +18,6 @@ public class ClientesServiceImp implements ClientesService {
 	
 	@Override
 	public List<Clientes> findAll() {
-		
 		return clientesRepository.findAll();
 	}
 
