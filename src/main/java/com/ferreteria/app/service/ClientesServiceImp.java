@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.Clientes;
+import com.ferreteria.app.entity.Empleados;
+import com.ferreteria.app.exception.ModeloNotFoundException;
 import com.ferreteria.app.repository.ClientesRepository;
 
 @Service
@@ -22,10 +24,12 @@ public class ClientesServiceImp implements ClientesService {
 	}
 
 	@Override
-	public Clientes findById(Integer idCliente) {
-		
-		Optional<Clientes> clientesO = clientesRepository.findById(idCliente);
-		return clientesO.isPresent() ? clientesO.get() : new Clientes();
+	public Clientes findById(Integer idCliente) throws Exception {	
+		Optional<Clientes> optionalCliente = clientesRepository.findById(idCliente);
+        if(!optionalCliente.isPresent()){
+            throw new ModeloNotFoundException("ID NO ENCONTRADO: " + idCliente);
+        }
+        return optionalCliente.get();
 	}
 
 	@Override

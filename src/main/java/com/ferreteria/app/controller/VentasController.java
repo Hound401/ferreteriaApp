@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,9 @@ import com.ferreteria.app.service.VentasService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/Ventas")
@@ -69,7 +73,7 @@ public class VentasController {
     }
 	
 	@GetMapping(value = "/dto", produces = MediaType.APPLICATION_JSON_VALUE)
-	private List<VentasDTO> getConsultasDTO() throws Exception {
+	private List<VentasDTO> getVentasDTOs() throws Exception {
 		List<Ventas> ventas = new ArrayList<>();
 		List<VentasDTO> ventasDTO = new ArrayList<>();
 		ventas = ventasService.findAll();
@@ -79,15 +83,14 @@ public class VentasController {
 			d.setEmpleados(v.getEmpleados());
 			d.setClientes(v.getClientes());
 
-			// localhost:0880/Empleados/
+			//http://localhost:8080/Ventas/dto
 			ControllerLinkBuilder linkTo1 = linkTo(methodOn(EmpleadosController.class).findById((v.getEmpleados().getIdEmpleado())));
 			d.add(linkTo1.withSelfRel());
-			VentasDTO.add(d);
+			ventasDTO.add(d);
 
-			// localhost:0880/Clientes/
-			ControllerLinkBuilder linkTo2 = linkTo(methodOn(ClientesController.class).listarPorId((v.getClientes().getIdCliente())));
+			ControllerLinkBuilder linkTo2 = linkTo(methodOn(ClientesController.class).findById((v.getClientes().getIdCliente())));
 			d.add(linkTo2.withSelfRel());
-			VentasDTO.add(d);
+			ventasDTO.add(d);
 		};
 		return ventasDTO;
 	}

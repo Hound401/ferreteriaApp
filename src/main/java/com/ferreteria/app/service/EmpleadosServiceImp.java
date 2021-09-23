@@ -35,10 +35,10 @@ public class EmpleadosServiceImp implements EmpleadosService {
 	}
 
 	@Override
-	public Empleados findById(Integer id) throws Exception {
-        Optional<Empleados> optionalEmpleado = empleadosRepository.findById(id);
+	public Empleados findById(Integer idEmpleado) throws Exception {
+        Optional<Empleados> optionalEmpleado = empleadosRepository.findById(idEmpleado);
         if(!optionalEmpleado.isPresent()){
-            throw new ModeloNotFoundException("ID NO ENCONTRADO: " + id);
+            throw new ModeloNotFoundException("ID NO ENCONTRADO: " + idEmpleado);
         }
         return optionalEmpleado.get();
     }

@@ -39,7 +39,7 @@ public class Clientes {
 	
 	@ManyToOne
 	@JoinColumn(name = "idTipoCliente", nullable = false)
-	private Clientes idTipoCliente;
+	private TipoCliente idTipoCliente;
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -73,11 +73,11 @@ public class Clientes {
 		Email = email;
 	}
 
-	public Clientes getIdTipoCliente() {
+	public TipoCliente getIdTipoCliente() {
 		return idTipoCliente;
 	}
 
-	public void setIdTipoCliente(Clientes idTipoCliente) {
+	public void setIdTipoCliente(TipoCliente idTipoCliente) {
 		this.idTipoCliente = idTipoCliente;
 	}
 	

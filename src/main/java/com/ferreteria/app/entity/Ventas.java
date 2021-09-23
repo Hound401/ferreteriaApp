@@ -38,7 +38,7 @@ public class Ventas {
 	private TipoComprobante tipoComprobante;
 	
 	@ManyToOne
-	@JoinColumn(name = "idClientes", nullable = false)
+	@JoinColumn(name = "idCliente", nullable = false)
 	private Clientes clientes;
 
 	public Integer getIdVenta() {

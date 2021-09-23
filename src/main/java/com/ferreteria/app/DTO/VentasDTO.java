@@ -2,6 +2,8 @@ package com.ferreteria.app.DTO;
 
 import java.io.Serializable;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import com.ferreteria.app.entity.Clientes;
 import com.ferreteria.app.entity.Empleados;
 

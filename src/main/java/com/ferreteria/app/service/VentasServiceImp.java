@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.Ventas;
+import com.ferreteria.app.repository.ClientesRepository;
+import com.ferreteria.app.repository.EmpleadosRepository;
 import com.ferreteria.app.repository.VentasRepository;
 
 @Service
@@ -16,6 +17,12 @@ public class VentasServiceImp implements VentasService {
 	@Autowired
 	private VentasRepository ventasRepository;
 	
+	@Autowired
+	private EmpleadosRepository empleadosRepository;
+	
+	@Autowired
+	private ClientesRepository clientesRepository;
+	
 	@Override
 	public List<Ventas> findAll() {
 		
@@ -23,10 +30,13 @@ public class VentasServiceImp implements VentasService {
 	}
 
 	@Override
-	public Ventas findById(Integer idVenta) {
+	public Ventas findById(Integer idVenta) throws Exception {
 		
-		Optional<Ventas> ventasO = ventasRepository.findById(idVenta);
-		return ventasO.isPresent() ? ventasO.get() : new Ventas();
+		Optional<Ventas> optionalVenta = ventasRepository.findById(idVenta);
+		if(!optionalVenta.isPresent()) {
+			throw new Exception("ID NO ENCONTRADO " + idVenta);
+		}
+		return optionalVenta.get();
 	}
 
 	@Override
