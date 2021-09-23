@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+
 @Entity
+@ApiModel(description = "Información o propiedes de perfiles del sistema")
 @Table(name = "PerfilSistema")
 public class PerfilSistema {
 

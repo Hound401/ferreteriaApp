@@ -4,17 +4,30 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.User;
 
-import com.ferreteria.app.entity.ClienteJuridico;
 import com.ferreteria.app.entity.CuentaUsuarios;
 import com.ferreteria.app.repository.CuentaUsuariosRepository;
 
 @Service
-public class CuentaUsuarioServiceImp implements CuentaUsuariosService {
+public class CuentaUsuarioServiceImp implements UserDetailsService,CuentaUsuariosService {
 	
 	@Autowired
 	private CuentaUsuariosRepository cuentaUsuariosRepository;
+	
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		CuentaUsuarios cuentaUsuario = cuentaUsuariosRepository.findOneByUserName(userName);
+		if(cuentaUsuario == null) {
+			throw new UsernameNotFoundException(String.format("Usuario no existe", userName));
+		}
+		UserDetails ud = new User(cuentaUsuario.getuserName(), cuentaUsuario.getContraseña(), null);
+		return ud;
+	}
 	
 	@Override
 	public List<CuentaUsuarios> findAll() {
