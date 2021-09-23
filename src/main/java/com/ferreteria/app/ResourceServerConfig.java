@@ -52,9 +52,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/Turnos/**").permitAll()
                 .antMatchers("/PerfilSistema/**").permitAll()
                 .antMatchers("/dto/**").permitAll()
-                .antMatchers("/menus/**").permitAll()
                 .antMatchers("/tokens/**").permitAll()
-                .antMatchers("/usuarios/").permitAll()
-                .antMatchers("/usuarios/getAll/**").hasRole("USER");
+                .antMatchers("/token/**").permitAll()
+                .antMatchers("/CuentaUsuarios/").permitAll();
     }
 }

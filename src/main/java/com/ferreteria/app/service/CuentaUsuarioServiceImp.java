@@ -1,5 +1,6 @@
 package com.ferreteria.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import com.ferreteria.app.entity.CuentaUsuarios;
@@ -25,7 +28,11 @@ public class CuentaUsuarioServiceImp implements UserDetailsService,CuentaUsuario
 		if(cuentaUsuario == null) {
 			throw new UsernameNotFoundException(String.format("Usuario no existe", userName));
 		}
-		UserDetails ud = new User(cuentaUsuario.getuserName(), cuentaUsuario.getContraseña(), null);
+
+		List<GrantedAuthority> NombrePerfil = new ArrayList<>();
+		NombrePerfil.add(new SimpleGrantedAuthority(cuentaUsuario.getPerfilSistema().getNombrePerfil()));
+
+		UserDetails ud = new User(cuentaUsuario.getuserName(), cuentaUsuario.getContraseña(), NombrePerfil);
 		return ud;
 	}
 	

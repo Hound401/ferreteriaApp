@@ -8,6 +8,6 @@ import com.ferreteria.app.entity.CuentaUsuarios;
 @Repository
 public interface CuentaUsuariosRepository extends JpaRepository<CuentaUsuarios, Integer>{
 
-	CuentaUsuarios findOneByUserName(String username);
+	CuentaUsuarios findOneByUserName(String userName);
 	
 }

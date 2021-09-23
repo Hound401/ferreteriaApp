@@ -80,8 +80,8 @@ public class VentasController {
 		for (Ventas v : ventas) {
 			VentasDTO d = new VentasDTO();
 			d.setIdVenta(v.getIdVenta());
-			d.setEmpleados(v.getEmpleados());
-			d.setClientes(v.getClientes());
+			//d.setEmpleados(v.getEmpleados());
+			//d.setClientes(v.getClientes());
 
 			//http://localhost:8080/Ventas/dto
 			ControllerLinkBuilder linkTo1 = linkTo(methodOn(EmpleadosController.class).findById((v.getEmpleados().getIdEmpleado())));

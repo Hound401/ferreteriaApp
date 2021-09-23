@@ -3,6 +3,8 @@ package com.ferreteria.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,9 +39,11 @@ public class CuentaUsuariosController {
             @ApiResponse(code = 404, message = "Not found, no encontrado"),
             @ApiResponse(code = 405, message = "No se encontraron CuentaUsuarios en la BD"),
             @ApiResponse(code = 200, message = "Peticón OK")})
+	
 	@GetMapping
-	public List<CuentaUsuarios> findAll(){
-		return cuentaUsuariosService.findAll();
+	public ResponseEntity<List<CuentaUsuarios>> listar(){
+		List<CuentaUsuarios> lista = cuentaUsuariosService.findAll();
+		return new ResponseEntity<List<CuentaUsuarios>>(lista, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{idCuentaUsuario}")
